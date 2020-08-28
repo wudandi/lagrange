@@ -6,13 +6,15 @@ import java.io.*;
 * 拷贝目录（复制粘贴）
 * 将 D:\kinggsoft\kduu_ba\sp7 拷贝到E盘的根目录下
 * */
+
+//有个bug，如果拷贝方法copyUtil中循环到的第一个File是文件的话，并不会创建路径，就会报错，FileOutPutStream只能在已存在的路径中创建文件
 public class CopyTest {
     public static void main(String[] args) {
         //拷贝源
         File srcfile =new File("D:\\kinggsoft\\kduu_ba\\sp7");
         //拷贝目标
         File destfile = new File("E:\\");
-        //生成拷贝目标
+        //生成拷贝目标（bug临时方法，不健壮）
         String rootDir = destfile.getAbsolutePath() + srcfile.getAbsolutePath().substring(3);
         File file = new File(rootDir);
         if (!file.exists()){
@@ -40,6 +42,7 @@ public class CopyTest {
                 //写文件
                 //E:\kinggsoft\kduu_ba\sp7\kcdpt\wh_ut.dat(创建的是一个wh_ut.dat文件)
                 String path = (destfile.getAbsolutePath().endsWith("\\")? destfile.getAbsolutePath() :destfile.getAbsolutePath()+"\\") + srcfile.getAbsolutePath().substring(3);
+                //（bug临时方法，不健壮）
              /*   String rootDir = path.substring(0,24);
                 File file1 = new File(rootDir);
                 if (!file1.exists()){
