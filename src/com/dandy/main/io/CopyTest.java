@@ -62,7 +62,7 @@ public class CopyTest {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
-            }finally {
+            } finally {
                 if (fileInputStream != null){
                     try {
                         fileInputStream.close();
